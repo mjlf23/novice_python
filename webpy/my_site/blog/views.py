@@ -7,7 +7,7 @@ from blog import models
 # Create your views here.
 
 def hello(request):
-    return HttpResponse("Hello, world!")
+    return HttpResponse("欢迎使用Django!")
 
 def index(request):
     blog_index = models.Article.objects.all().order_by("-id")

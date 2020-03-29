@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$(sw!^8^35w0tjqj+w+%ohrr+yx=!*tw3y+6yxr01!jqui3th&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*'] #添加'*'后，表示任何域名都能访问
 
 
 # Application definition
@@ -80,8 +80,18 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-
+"""
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "test",
+        "USER": "root",
+        "PASSWORD": "19881109",
+        "HOST": "",
+        "PORT": "3306",
+    }
+}
+"""
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -100,6 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#AUTH_USER_MODEL = "blog.UserInfo"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -120,4 +131,32 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+#静态文件别名
 STATIC_URL = '/static/'
+#静态文件地址拼接，后面“static”文件为自己建立的存放静态文件（JS，IMG，CSS）的文件名
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"), #主文件下静态文件
+    os.path.join(BASE_DIR, "blog", "statics"), #应用blog文件下的静态文件 
+)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+"""
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django.db.backends": {
+            "handlers": ["console"],
+            "propagate": True,
+            "level": "DEBUG",
+        },
+    }
+}
+"""
