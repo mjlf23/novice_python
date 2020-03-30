@@ -14,13 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include, re_path
 from blog import views
+from django.views.static import serve
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("index", views.hello),
-    path("", views.index, name="index")
+    path("", views.index, name="index"),
+    path("ueditor/", include("DjangoUeditor.urls")), #添加DjangoUeditor的URL
+    re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
 ]
 handler400 = views.bad_request
 handler403 = views.permission_denied

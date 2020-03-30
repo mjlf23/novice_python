@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$(sw!^8^35w0tjqj+w+%ohrr+yx=!*tw3y+6yxr01!jqui3th&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*'] #添加'*'后，表示任何域名都能访问
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'DjangoUeditor',
 ]
 
 MIDDLEWARE = [
